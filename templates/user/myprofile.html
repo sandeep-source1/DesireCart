@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% block title %}
+My Profile
+{% endblock %}
+{% block content  %}
+{% load static %}
+<div class="container-fluid ">
+    <div class="row p-0 m-0">
+        <div class="container-fluid m-0 p-0">
+            {% if profile %}
+        <div class="row bg-dark text-light py-4" style="border-radius:0px 0px 30px 30px;" >
+
+        <div class="col-sm-6 text-center py-5" style="min-height:200px;">
+            <img src="/{{profile.0.userpic}}" class="img-fluid img-responsive" >
+        </div>
+            <div class="col-sm-6 p-5">
+                <div class="row text-light h4">{{profile.0.name}}</div>
+                <div class="row"><a class="btn btn-outline-primary" href="/user/editpro/">Edit</a></div>
+            </div>
+        </div>
+            <div class="row " style="transform:translateY(-70px)">
+                <div class="container m-auto p-5 bg-light" style="border-radius:30px;">
+                    <div class="row p-3 ">
+               <div class="col-sm-6 p-2">
+                   <div class="h6">Email  :</div>
+                   <div class="text-primary"> <a href="mailto:{{profile.0.email}}"> <font class="fa fa-envelope"></font> {{profile.0.email}}</a></div>
+               </div>
+                <div class="col-sm-6 p-2">
+                    <div class="h6">Address  :</div>
+                    <div class="text-primary"> <font class="fa fa-map-marker"></font> {{profile.0.address}}</div>
+                </div>
+                    </div>
+                    <div class="row p-3 ">
+               <div class="col-sm-6 p-2">
+                   <div class="h6">Contact  :</div>
+                   <div class="text-primary"> <a href="tel:{{profile.0.mob}}"> <font class="fa fa-phone"></font> {{profile.0.mob}}</a></div>
+               </div>
+                <div class="col-sm-6 p-2">
+                    <div class="h6">Username  :</div>
+                    <div class="text-primary"> <font class="fa fa-"></font> {{profile.0.userid}}</div>
+                </div>
+                    </div>
+                    <div class="container">
+                        <div class="container">
+                        <div class="row h5 px-5"> Items in your cart :</div>
+                        {% for item in mycart %}
+
+                        <div class="row py-3 px-5">
+                            <div class="col-sm-2"><img src="/{{item.cartproduct.img}}" height="50px" width="50px"> </div>
+                            <div class="col-sm-4 h6"><a href="/user/details?product={{item.cartproduct.id}}">{{item.cartproduct.name}}</a> </div>
+                             <div class="col-sm-6 ">
+                                  {% if item.cartproduct.ordered %}
+                                  <a >Buy Again</a>
+                                  {% else %}
+                                  <a class="btn btn-outline-success">Buy Now</a>
+                                  <button class="btn btn-outline-danger" onclick="check('/user/removefromcart?remove={{item.id}}')">Remove From Cart</button>
+                                  {% endif %}
+
+                              </div>
+                        </div>
+                        {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <div class="row bg-dark text-light py-5" style="border-radius:0px 0px 30px 30px;" >
+
+                    <div class="col-sm-12 text-center py-5" style="min-height:200px;">
+
+                    </div>
+            </div>
+            <div class="row " style="transform:translateY(-70px)">
+                <div class="container m-auto p-5  bg-light" style="border-radius:30px;min-height:300px;">
+                            <font class="text-primary m-4">Sign in to View Your Profile....</font>  <button onclick="trig()" class="btn btn-primary">Sign In</button>
+
+                </div>
+            </div>
+        {% endif %}
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock %}

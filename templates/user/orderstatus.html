@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+{% block title %}
+My Cart
+{% endblock %}
+{% block content  %}
+{% load static %}
+<div class="container-fluid">
+    <div class="row bg-dark" style="border-radius:0px 0px 30px 30px">
+                    <div class="col-sm-12 text-center h3 text-light pb-5"> <div id="swipe" style="min-height:30px;"></div>Order <font style="color:#e5ac4a;">Status</font></div>
+
+    </div>
+    <div class="container" style="border-radius:30px;transform:translateY(-50px);">
+
+        <div class="container bg-light p-4"  style="border-radius:30px;">
+
+
+               <div class="row">
+                   <div class="col-sm-12  h5 text-center">
+                        Order id #<font style="color:#e5ac4a;">{{order.id}}</font>
+                   </div>
+               </div>
+            {% if one %}
+             <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12">
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Waiting to dispatch </font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Dispatching</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font > Dispatched</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Leaved for Your City</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered to Local Facility</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >On the Way to Your Door</font>
+                   </div>
+               </div>
+
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered</font>
+                   </div>
+               </div>
+            {% endif %}
+            {% if two %}
+             <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12">
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Waiting to dispatch </font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Dispatching</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font > Dispatched</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Leaved for Your City</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered to Local Facility</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >On the Way to Your Door</font>
+                   </div>
+               </div>
+
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered</font>
+                   </div>
+               </div>
+            {% endif %}
+            {% if three %}
+             <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12">
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Waiting to dispatch </font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Dispatching</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Dispatched</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Leaved for Your City</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered to Local Facility</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >On the Way to Your Door</font>
+                   </div>
+               </div>
+
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered</font>
+                   </div>
+               </div>
+            {% endif %}
+            {% if four %}
+             <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12">
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Waiting to dispatch </font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Dispatching</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Dispatched</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Leaved for Your City</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered to Local Facility</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >On the Way to Your Door</font>
+                   </div>
+               </div>
+
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered</font>
+                   </div>
+               </div>
+            {% endif %}
+            {% if five %}
+             <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12">
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Waiting to dispatch </font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Dispatching</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Dispatched</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Leaved for Your City</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Delivered to Local Facility</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >On the Way to Your Door</font>
+                   </div>
+               </div>
+
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered</font>
+                   </div>
+               </div>
+            {% endif %}
+            {% if six %}
+             <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12">
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Waiting to dispatch </font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Dispatching</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Dispatched</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Leaved for Your City</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Delivered to Local Facility</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >On the Way to Your Door</font>
+                   </div>
+               </div>
+
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" style="opacity:.5;">
+                        <font class="fa fa-chevron-right " ></font> <font >Delivered</font>
+                   </div>
+               </div>
+            {% endif %}
+            {% if seven %}
+             <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12">
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Waiting to dispatch </font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font>Dispatching</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font > Dispatched</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Leaved for Your City</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Delivered to Local Facility</font>
+                   </div>
+               </div>
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >On the Way to Your Door</font>
+                   </div>
+               </div>
+
+            <div class="row text-center pt-4 pb-2">
+                   <div class="col-sm-12" >
+                        <font class="fa fa-chevron-right " style="color:#e5ac4a"></font> <font >Delivered</font>
+                   </div>
+               </div>
+            {% endif %}
+
+
+
+        </div>
+
+    </div>
+</div>
+{% endblock %}

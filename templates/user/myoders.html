@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}
+My Orders
+{% endblock %}
+{% block content  %}
+{% load static %}
+<script>
+
+</script>
+<div class="container-fluid"  style="min-height:300px;">
+     <div class="row p-5 bg-dark" style="border-radius:0px 0px 30px 30px;">
+
+            <div class="col-sm-12 text-center h3 text-light pb-5">My <font style="color:#e5ac4a;">Orders</font></div>
+     </div>
+    <div class="container bg-light py-3" id="reduce" style="font-size:15px;transform:translateY(-50px);border-radius:30px;">
+        {% if status %}
+    {% if mycart %}
+  {% for order in mycart %}
+    <div class="container" >
+
+        <div class="row bg-light p-5 " style="">
+            <div class="col-sm-5">
+                <img src="/{{order.cartproduct.img}}" class="img-fluid img-responsive ">
+            </div>
+            <div class="col-sm-7">
+                <div class="row">
+                    <div class="col-sm-12 h3"><a href="/user/details?product={{order.Order_product.id}}"> {{order.cartproduct.name}}</a></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">Size : {{order.cartproduct.size}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">Price : <font class="fa fa-inr"> {{order.cartproduct.price}} </font> <sub class="text-danger fa fa-inr"> <s> {{order.cartproduct.price}}</s></sub></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">{{order.cartproduct.description}}</div>
+                </div>
+                <div class="row">
+                    <font class="h6 px-3"> Status : </font><font class=""> {{order.status}}</font>
+                </div>
+                <div class="row">
+                    <font class="h6 px-3"> Order Date : </font><font class=""> {{order.Datetime}}</font>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 p-4">
+
+
+                        <a  href="/user/details?product={{order.cartproduct.id}}" class="btn btn-dark text-light" style="background:#e5ac4a;border:none;">Order Again</a>
+                        {% if not order.delivered %}
+                        <a class="btn btn-primary" href="/user/track?product={{order.id}}" >Track Your Order</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+        {% else %}
+    <div class="conatiner" style="min-height:40%;">
+        <font class="text-primary m-4">Order history not available....</font>  <a href="/" class="btn btn-primary">Explore our products.</a>
+    </div>
+    {% endif %}
+        {% else%}
+
+        <font class="text-primary m-4">Sign in to View Items in Your Cart....</font>  <button onclick="trig()" class="btn btn-primary">Sign In</button>
+
+        {% endif %}
+    </div>
+</div>
+<script>
+ $(document).ready(function(){
+ $("#reduce").on('scroll',function(){
+ $("#swipe").slideUp();
+ });
+
+ });
+</script>
+{% endblock %}

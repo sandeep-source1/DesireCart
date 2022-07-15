@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block page %}
+home
+{% endblock %}
+{% block title %}
+Sign Up
+{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container-fluid p-0 m-0 " style="border-radius:5px;">
+
+     <div class="container-fluid bg-dark" style="border-radius:0px 0px 30px 30px;min-height:200px;">
+        <div class="row">
+            <div class="col sm-12">
+            {% if status %}
+            <p class="alert alert-success">Account Created Successfully <button onclick="trig()" class="btn btn-outline-primary">Sign In</button></p>
+            {% endif %}
+            </div>
+        </div>
+     <div class="row my-4"><div class="col-sm-12 text-center text-light h3 " >Sign <font style="color:#e5ac4a;">Up</font></div></div>
+     </div>
+     <div class="container" style="background:white;border-radius:30px;transform:translateY(-70px);">
+     <div class="row bg-light p-5" style="border-radius:30px;">
+
+    <div class="col-sm-6 p-3 " style="border-radius:5px;">
+
+        <div class="row">
+
+            <div class="col-sm-12">
+                <form action="/user/signup/" method="post" enctype="multipart/form-data" id="formdata">
+                     {% csrf_token %}
+            <font class="h6">Name :</font> <br>
+            <input type="text" placeholder="Enter your name" name="name" required class="form-control bg-light">
+            <font class="h6">Mobile no:</font> <br>
+            <input type="text" placeholder="Enter your mobile number" name="mobno" required class="form-control bg-light">
+             <font class="h6">Email :</font> <br>
+            <input type="email" placeholder="Enter your email address" name="email" required class="form-control bg-light">
+              <font class="h6">Create Username :</font><br>
+            <input type="text" placeholder="Create username" name="username" required class="form-control bg-light" oninput="checkusername(this)"><span id="ualert" class="text-danger"></span><br>
+            <font class="h6">Password :</font><br>
+
+            <input type="password" placeholder="Enter password" name="password"  required class="form-control bg-light">
+            <font class="h6">Confirm Password :</font><br>
+
+            <input type="password" placeholder="Enter password" required class="form-control bg-light">
+             <font class="h6">Profile Picture :</font><br>
+            <input type="file" pattern="" class="form-control bg-light" name="file">
+            <font class="h6">Address :</font><br>
+                    <textarea  placeholder="Enter your name" name="address" required class="form-control bg-light"></textarea>
+             <input type="submit" class="btn btn-success m-3" style="background-color:#e5ac4a;border:none">
+        </form>
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+         <div class="col-sm-6 p-4">
+            <img src="{% static 'ref/shopping picture/login.jpg' %}" class="img-fluid img-responsive p-4 ">
+        </div>
+
+
+</div>
+
+         <div class="row">
+             <div class="col-sm-12 text-center">
+                 <font>Already Have an Account. <button onclick="trig()" class="btn btn-outline-primary" style="border:none;">Sign In </button></font>
+             </div>
+
+         </div>
+     </div>
+</div>
+<script>
+    function checkusername(ob){
+    req=new XMLHttpRequest();
+    req.open("POST",'/user/checkuname/',true);
+    data=new FormData(formdata);
+    req.send(data);
+    req.onreadystatechange=function(){
+	console.log(req.status);
+	console.log(req.readyState);
+	if(this.status==200&&this.readyState==4){
+	console.log(this.responseText);
+	if(this.responseText!="success"){
+
+	document.getElementById('ualert').innerText="This username already exists.";
+	}else{
+	document.getElementById('ualert').innerText="  ";
+
+	}
+	}
+	};
+    }
+</script>
+{% endblock %}

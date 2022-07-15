@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}
+Payment - {% if status %}{{product}}{% endif %}
+{% endblock %}
+{% block content  %}
+{% load static %}
+<div class=" conatainer-fluid">
+    <div class="container-fluid">
+    <div class="row bg-dark p-4" style="border-radius:0px 0px 30px 30px">
+      <div class="col-sm-12 text-center text-light pb-4">
+          <font class="h4">Your Order  <font style="color:#e5ac4a;">Confirmed</font></font>
+      </div>
+
+    </div>
+    </div>
+
+    <div class="container" style="transform:translateY(-30px);">
+        <div class="row text-center bg-light" style="border-radius:30px;padding:10%;">
+            <div class="col-sm-12">
+                <p class="h5 ">Thanks for   <font style="color:#e5ac4a;">Choosing Us</font></p>
+                <p> We are working on your order. We will try to deliver your Order as soon as possible.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

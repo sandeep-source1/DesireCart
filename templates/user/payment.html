@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+Payment - {% if status %}{{product}}{% endif %}
+{% endblock %}
+{% block content  %}
+{% load static %}
+<div class="container-fluid">
+    <div class="row bg-dark py-3" style="border-radius:0px 0px 30px 30px;">
+        <div class="col-sm-12 text-center h3 text-light pb-2" >
+          <font class="fa fa-money"></font>  Pay<font style="color:#e5ac4a;">ment</font>
+        </div>
+    </div>
+    <div class="container bg-light" style="border-radius:30px;transform:translateY(-20px);">
+        <div class="row p-5" >
+             <div class="col-sm-12">
+                 <form method="post" action="/user/thanks/" enctype="multipart/form-data">
+                     {% csrf_token %}
+                     <input type="number" value="{{product.id}}" name="pid" hidden>
+                <div class="row  h5">Select&nbsp;Payment&nbsp;<font style="color:#e5ac4a;"> Method</font></div>
+                <div class="row py-3">
+                    <div class="col-sm-3 py-2">
+                        <input type="radio" value="Credit Card/Debit Card" name="payment" disabled/> Credit Card/Debit Card
+                    </div>
+                    <div class="col-sm-3 py-2">
+                        <input type="radio" value="Online banking" name="payment" disabled/> Online Banking
+                    </div>
+                    <div class="col-sm-3 py-2">
+                        <input type="radio" value="upi" name="payment" disabled/> UPI
+                    </div>
+                    <div class="col-sm-3 py-2">
+                        <input type="radio" value="Cassh on delivery" name="payment" checked/> Cash On Delivery
+                    </div>
+                 </div>
+                 <div class="row pt-3">
+                     <input type="submit" style="background:#e5ac4a;border:none;" class="btn btn-success" value="Contiue">
+                 </div>
+                </form>
+             </div>
+    </div>
+        <div class="row">
+            <div class="col-sm-8">
+
+            </div>
+        <div class="col-sm-4 px-4">
+            <img src="{% static 'ref/shopping picture/payment-method.png' %}" class="img-fluid" style="width:100%;"/>
+        </div>
+    </div>
+</div>
+    <div class="container">
+
+    </div>
+</div>
+
+
+
+{% endblock %}

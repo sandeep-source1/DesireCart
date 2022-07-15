@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}
+Delevery Information
+{% endblock %}
+{% block content  %}
+{% load static %}
+<div class="container-fluid">
+    <div class="row bg-dark py-3" style="border-radius:0px 0px 30px 30px">
+         <div class="col-sm-12 text-center h3 text-light py-5">Address <font style="color:#e5ac4a;">Details</font><br>
+             <font class="text-primary ">{{product.name}}</font></div>
+    </div>
+    <div class="container bg-light p-5" style="border-radius:30px;transform:translateY(-50px);">
+      <form action="/user/payment/" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="number" name="pid" value="{{product.id}}" hidden>
+        <div class="row p-5">
+            <div class="col-sm-12">
+                <div class="row  h5">Personal&nbsp;<font style="color:#e5ac4a;"> Details</font></div>
+                <div class="row py-2">
+                    <div class="col-sm-6 py-2">
+                        <font class="h6">First Name</font>
+                        <input type="text" name="first-name" class="form-control bg-light" placeholder="Enter Your First Name *" required>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <font class="h6">Last Name</font>
+                        <input type="text" name="last-name" class="form-control bg-light" placeholder="Enter Your Last name *" required>
+                    </div>
+                </div>
+                <div class="row  h5 py-2">Contact &nbsp;<font style="color:#e5ac4a;"> Details</font></div>
+                <div class="row pb-3">
+                    <div class="col-sm-6 py-2">
+                        <font class="h6">Mobile No :</font>
+                        <input type="number" name="first-name" class="form-control bg-light" placeholder="Enter Your Mobile no *" required >
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <font class="h6">Optional Mobile no :</font>
+                        <input type="text" name="last-name" class="form-control bg-light" placeholder="Enter Your Optional Mobile  no ">
+                    </div>
+                </div>
+                <div class="row  h5 py-3 ">Address&nbsp;<font style="color:#e5ac4a;"> Details</font></div>
+                <div class="row px-2 pb-2"><div class="col-sm-12"> <input type="radio" name="pickup" > <font> Delivery not available in your aria choose a pickup point</font></div></div>
+                <div class="row pb-2">
+                    <div class="col-sm-6 py-2">
+                        <font class="h6">Address Details</font>
+                        <input type="text" name="address" class="form-control bg-light" placeholder="Enter Address Deatails * " required>
+                    </div>
+                    <div class="col-sm-6 py-2">
+                        <font class="h6">Time of delivery</font>
+                         <select class="form-control bg-light" required>
+                            <option>6:00-9.00 AM</option>
+                            <option>9:00-12.00 AM</option>
+                            <option>12:00-3.00 PM</option>
+                            <option>3:00-6.00 PM</option>
+                            <option>6:00-9.00 PM</option>
+                            <option>Any time</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            <div class="row p-4">
+                {% if user.is_authenticated %}
+                <input type="submit" value="Order" class="btn btn-success" style="background-color:#e5ac4a;border:none;">
+                {% else %}
+                <button onclick="trig()" class="btn btn-success" style="background-color:#e5ac4a;border:none;">Continue  </button>
+                {% endif %}
+            </div>
+
+
+
+
+            </div>
+
+       </form>
+
+    </div>
+</div>
+
+
+
+{% endblock %}

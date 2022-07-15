@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		{% block title %}
+		{% endblock %}
+	</title>
+	{% load static %}
+	<script type="text/javascript" src="{% static 'js/jQuery.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'font/css/font-awesome.min.css' %}">
+	<style type="text/css">
+
+
+
+	    .footer{
+	    position:relative;
+	    bottom:0px;
+	    }
+		.f-icon{
+			color:#f1f1f1;
+
+			background: #444444;
+			padding:7px;
+			border-radius: 50%;
+
+		}
+		.footer div div div p a{
+			color:#b7b7b7;
+		}
+		.footer div div a img{
+			height: 30px;
+		}
+	</style>
+	<script>
+		function data(){
+		var data=document.getElementById('search');
+		var view=document.getElementById('view');
+		value=data.value;
+		if (value.length==0){
+		view.innerHTML="";
+		}else{
+		  var req=new XMLHttpRequest();
+		  req.open("GET","/user/data?data="+value,true);
+		  req.send();
+		  req.onreadystatechange=function(){
+            if(this.status==200&&this.readyState==4){
+            response=this.responseText;
+
+            res=response.split('!');
+            view.innerHTML="";
+             console.log(res);
+            res.forEach(function(item,index){
+            if(index%2==0){
+            view.innerHTML+="<div class='row'><div class='col-sm-12 bg-light'><a class='text-dark btn btn-light text-left' style='height:100%;width:100%;' href='/user/details?product="+res[index+1]+"'>"+item+"</a></div></div>";
+            }
+            });
+            }
+		  }
+		}
+		}
+
+	</script>
+</head>
+<body>
+<div class="conatainer-fluid p-0">
+	<div class="container-fluid">
+		<div class="container">
+		<div class="row">
+			<div class="col-sm-4">
+				{% if user.is_authenticated %}
+				<font class="fa fa-user"> {{request.user}}</font>  <button onclick="signout()" style="border:none;background:none;outline:none;"><font  class="fa fa-sign-out text-primary"></font></button>
+				{% else %}
+				<button onclick="trig()" style="border:none;background:none;outline:none;"> <font class="fa fa-user text-primary" > Sign in</font></button>
+				{% endif %}
+			</div>
+			<div class="col-sm-4 text-center">
+				<font class="fa fa-phone"> <a href="tel:+9145566537">+9145566537</a></font>
+			</div>
+			<div class="col-sm-4 text-right">
+				<a class="fa fa-facebook px-1" href="https://www.facebook.com"></a>
+				<a class="fa fa-twitter px-1" href="https://www.twitter.com"></a>
+				<a class="fa fa-youtube px-1" href="https://www.youtube.com"></a>
+				<a class="fa fa-instagram px-1" href="https://www.instagram.com"></a>
+			</div>
+		</div>
+		</div>
+<div class="row p-3">
+	<div class="col-sm-4">
+      <div class="row">
+
+      	<div class="col-sm-12 text-center">
+<font class="h3">Desire<font style="color:#e5ac4a;">Cart<font class="fa fa-shopping-cart "></font></font>
+	    </font>
+	    </div>
+	    </div>
+	</div>
+	<div class="col-sm-4">
+	<div class="input-group mb-3">
+
+  <input oninput="data()" id="search" type="text" class="form-control rounded-0" placeholder="What do you need ?" aria-label="Username" aria-describedby="basic-addon1">
+
+  <div class="input-group-append">
+    <span class="input-group-text rounded-0" id="basic-addon1" style="background:#e5ac4a;color: white; "><font class="fa fa-search"></font></span>
+  </div>
+</div>
+		<div class="container p-0 m-0 text-dark" id="view" style="position:absolute;float:center;z-index:33;">
+
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="row">
+			<div class="col-sm-12 text-center">
+		<font class="fa fa-heart"> <a id="cartlink"><button class="fa fa-shopping-cart " style="border:none;background:none;outline:none;font-size:20px;color:#e5ac4a;"></button></a><font style="position:relative;top:-10px;left:-5px;font-size:10px;color:white;background:#e5ac4a;border-radius:50%;padding:3px;" id="cart">0{% if user.is_authenticated %}
+		    <script>
+             window.onload=function(){load();};
+			</script>
+			{% endif %}
+		</font>
+		</font>
+		</div>
+		</div>
+	</div>
+</div>
+</div>
+	<div class="conatiner-fluid">
+<div class="row bg-dark mx-0" style="min-height: 30px;width:100%">
+
+	<div class="col-sm-12">
+		<nav class="navbar navbar-expand-lg navbar-dark px-0 mx-0">
+     <a class="navbar-brand px-4" href="#" >Desire<font style="color:#e5ac4a;">Cart</font></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/"><font class="fa fa-home"></font> Home <span class="sr-only">(current)</span></a>
+      </li>
+       <li class="nav-item dropdown bg-dark">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Product
+        </a>
+        <div class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item text-light" href="/user/mens">Mens</a>
+          <a class="dropdown-item text-light" href="/user/womens">Womens</a>
+			<div class="dropdown-divider"></div>
+			<a class="dropdown-item text-light" href="/user/kids">Kids</a>
+
+        </div>
+      </li>
+      <li class="nav-item">
+        {% if user.is_authenticated %}
+          <a class="nav-link " href="/user/myoders" ><font class="fa fa-user"></font> My Orders</a>
+			{% else %}
+          <button class="nav-link " style="border:none;background:none;outline:none;" onclick="trig()" ><font class="fa fa-user"></font> My Orders</button>
+			{% endif %}
+	  </li>
+		<li class="nav-item">
+			{% if user.is_authenticated %}
+          <a class="nav-link " href="/user/myprofile" ><font class="fa fa-user"></font> My Profile</a>
+			{% else %}
+          <button class="nav-link " style="border:none;background:none;outline:none;" onclick="trig()" ><font class="fa fa-user"></font> My Profile</button>
+			{% endif %}
+      </li>
+		<li class="nav-item">
+          <a class="nav-link" href="/user/contactus"><font class="fa fa-phone"></font> Customer Support</a>
+      </li>
+      <li class="nav-item">
+
+          <button class="nav-link" onclick="trig()" style="border:none;background:none;outline:none;"><font class="fa fa-sign-in"></font> Sign in</button>
+	  </li>
+		 <li class="nav-item">
+
+          <a class="nav-link" href="/user/signup"><font class="fa fa-sign-out "></font> Sign up</a>
+	  </li>
+    </ul>
+  </div>
+</nav>
+	</div>
+</div>
+		</div>
+    {% block content %}
+
+
+    {% endblock %}
+
+
+
+
+
+
+
+
+
+<div id="mt" style="background:none;position:fixed;z-index:20;width:100%;top:3%;"></div>
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" id="btnModel" data-toggle="modal" data-target="#exampleModal" hidden>
+  Login
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="min-height:300px;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-dark" style="border-radius:0px 0px 20px 20px;">
+        <h5 class="modal-title text-light" id="exampleModalLabel">Log<font style="color:#e5ac4a;">in</font></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div class="container ">
+           <div class="container" style="border-radius:20px;transform:translateY:(-20px);">
+
+                  <p id="log-alert"></p>
+
+               <form id="formd">
+               {% csrf_token %}
+				   <input type="text" name="action" hidden value="{% block page %}{% endblock %}">
+                Username:<br>
+                    <input type="text" class="form-control my-3" placeholder="Enter Username*" name="username" id="username" required>
+                 Password:<br>
+                    <input type="password" class="form-control my-3"  placeholder="Enter Password*" name="password" id="password" required>
+                    <input type="button" onclick="signin()" value="Submit" class="btn btn-success" style="background:#e5ac4a;border:none;">
+			   </form>
+			 <p class="text-right"> <a href="/user/signup" style="text-decoration:none;color:#e5ac4a;">Don't have an account ?</a></p>
+			 <p class="text-right"> <a href="/user/forgetpassword/" style="text-decoration:none;color:#e5ac4a;">Forget password ?</a></p>
+           </div>
+            </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+    <!--footer-->
+<div class="container-fluid footer  ">
+	<div class="row   p-3 px-6#333333;" style="background: #333333;">
+		<div class="col-sm-1"></div>
+		<div class="col-sm-2 ">
+			<a href=""><img src="{% static 'ref\shopping picture\logo-carousel\logo-1.png' %}"></a>
+		</div>
+		<div class="col-sm-2">
+			<a href=""><img src="{% static 'ref\shopping picture\logo-carousel\logo-2.png' %}"></a>
+		</div>
+		<div class="col-sm-2">
+			<a href=""><img src="{% static 'ref\shopping picture\logo-carousel\logo-3.png' %}"></a>
+		</div>
+		<div class="col-sm-2">
+			<a href=""><img src="{% static 'ref\shopping picture\logo-carousel\logo-4.png' %}"></a>
+		</div>
+		<div class="col-sm-2">
+			<a href=""><img src="{% static 'ref\shopping picture\logo-carousel\logo-5.png' %}"></a>
+		</div>
+		<div class="col-sm-1"></div>
+	</div>
+	<div class="row p-3" style="background: #1a1a1b;">
+		<div class="container footer"  style="color:#b7b7b7; font-size: 13px">
+			<div class="row">
+				<div class="col-sm-4 ">
+					<p class="h3 text-light">Desire<font style="color:#e5ac4a;">Cart.</font></p>
+					<p style="white-space: pre-line;">
+						Addres db road, 4355 new
+						jawa
+						Allahabad
+						Mobile - +118289000
+						Email - Conatct@Desirecart.com
+					</p>
+					<p><font class="fa fa-facebook f-icon"> </font> <font class="fa fa-instagram f-icon"></font> <font class="fa fa-twitter f-icon"> </font> <font class="fa fa-pinterest-p f-icon"> </font> </p>
+
+				</div>
+				<div class="col-sm-4">
+					<div class="row">
+						<div class="col-sm-6" >
+							<p class="h6 text-light py-2">Information</p>
+							<p><a href="">About Us</a></p>
+							<p><a href="">Checkout</a></p>
+							<p><a href="/user/contactus/">Contact Us</a></p>
+							<p><a href="">Services</a></p>
+
+						</div>
+						<div class="col-sm-6">
+                            <p class="h6 text-light py-2">My Account</p>
+							<p><a href="/user/myprofile">My Account</a></p>
+							<p><a href="/user/contactus/">Contact</a></p>
+							<p><a href="/user/mycart/">Shopping Cart</a></p>
+							<p><a href="">Shop</a></p>
+
+						</div>
+					</div>
+
+				</div>
+				<div class="col-sm-4">
+					<p class="h6 text-light py-2">Join our Newsletter Now</p>
+							<p>Get E-mail updates about our latest shop and special offers.</p>
+							<p><div class="input-group mb-3">
+
+                             <input type="text" class="form-control rounded-0 border-0 " placeholder="Enter Your Mail" aria-label="Username" aria-describedby="basic-addon1" style="background: #252525">
+
+                                <div class="input-group-append">
+                                 <span class="input-group-text rounded-0 border-0" id="basic-addon1" style="background:#e5ac4a;color: white; ">SUBSCRIBE</span>
+                             </div>
+                             </div>
+                         </p>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row pt-3 border-top" style="background: #1a1a1b;border-color:#b7b7b7;">
+		<div class="container" style="color:#b7b7b7; font-size: 13px">
+			<div class="row">
+				<div class="col-sm-8">
+					<p>Copyright &copy;2020 All rights reserved.</p>
+				</div>
+				<div class="col-sm-4">
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+</div>
+<script>
+	function check(url){
+	req=new XMLHttpRequest();
+	req.open("GET",url,true);
+	req.send();
+	req.onreadystatechange=function(){
+	console.log(req.status);
+	console.log(req.readyState);
+	if(this.status==200&&this.readyState==4){
+	if(this.responseText=="Need refresh"){
+	location.reload();
+	}else{
+
+    document.getElementById("mt").innerHTML='<div aria-live="polite"  aria-atomic="true" class="d-flex justify-content-center align-items-center" style="height: 200px;"><div class="toast"  role="status" aria-live="polite" aria-atomic="true" data-delay="1000"><div class="toast-header bg-dark text-light" style="border-radius:0px 0px 10px 10x;" ><strong class="mr-auto">Desire<font style="color:#e5ac4a;">Cart</font></strong><small>0 mins ago</small><button type="button" class="text-light ml-2 mb-1 close text-light" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="toast-body">'+req.responseText+'</div></div></div>';
+    	$(".toast").toast("show");
+    load();
+    setTimeout(function(){
+
+	document.getElementById("mt").innerHTML="";
+    },2000);
+	}
+	}
+	};
+
+	}
+	function signout(){
+	req=new XMLHttpRequest();
+	req.open("GET","/user/signout",true);
+	req.send();
+	req.onreadystatechange=function(){
+
+	if(this.status==200&&this.readyState==4){
+	if(this.responseText=="success"){
+	location.reload();
+	}
+	}
+	};
+
+	}
+	function trig(){
+	$("#btnModel").click();
+	}
+   function signin(){
+    req=new XMLHttpRequest();
+	req.open("POST","/user/signin/",true);
+
+    data=new FormData(formd)
+	req.send(data);
+	req.onreadystatechange=function(){
+	console.log(req.status);
+	console.log(req.readyState);
+	if(this.status==200&&this.readyState==4){
+	if(this.responseText=="success"){
+	document.getElementById("log-alert").innerHTML='<p class="alert alert-success">Login successfully.</p>';
+	location.reload();
+	}
+	else if(this.responseText=='success and home'){
+	document.getElementById("log-alert").innerHTML='<p class="alert alert-success">Login successfully.</p>';
+	open('/','_self');
+
+	}
+	else{
+		document.getElementById("log-alert").innerHTML='<p class="alert alert-danger">Incorrect Username or password.</p>';
+
+	}
+	}
+	};
+
+
+	}
+	function load(){
+	           cart=new XMLHttpRequest();
+				cart.open("GET","/user/cartdata",true);
+				cart.send();
+	            cart.onreadystatechange=function(){
+	            console.log(cart.status);
+	            console.log(cart.readyState);
+	            if(this.status==200&&this.readyState==4){
+
+	            document.getElementById("cart").innerText=this.responseText;
+	            document.getElementById("cartlink").href='/user/mycart/';
+
+	            }
+	            };
+	}
+</script>
+</body>
+</html>
